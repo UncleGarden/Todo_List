@@ -3,8 +3,8 @@
     <head>
         <title>Angular Todo List</title>
         <meta charset="UTF-8">
-        
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+        <script src="//code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
         <script src="/controller/listController.js"></script>
     </head>
     
@@ -12,7 +12,10 @@
         <h2>My Todo List</h2>
 
         <form ng-submit="todoAdd()">
-            <input type="text" ng-model="todoInput" size="50" placeholder="Add New">
+            <span ng-show="!todoInput.length">Please enter your todo task!</span>
+            <br>
+            <input type="text" ng-model="todoInput" size="50" placeholder="Add New" required>
+            <br>
             <input type="submit" value="Add New">
         </form>
 

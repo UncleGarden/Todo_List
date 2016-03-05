@@ -3,7 +3,7 @@ var app = angular.module('myTodo', []);
 
 app.controller('todoCtrl', function ($scope) {
     "use strict";
-    $scope.todoList = [{todoText: 'Clean House', done: false}];
+    $scope.todoList = [];
 
     $scope.todoAdd = function () {
         $scope.todoList.push({todoText: $scope.todoInput, done: false});
