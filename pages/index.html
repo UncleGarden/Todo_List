@@ -10,7 +10,8 @@
     
     <body ng-app="myTodo" ng-controller="todoCtrl" ng-init="title='My Todo List'">
         <h2>{{ title }}</h2>
-
+        <current-date></current-date>
+        
         <form ng-submit="todoAdd()">
             <span ng-show="!todoInput.length">Please enter your todo task!</span>
             <br>
