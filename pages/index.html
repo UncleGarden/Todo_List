@@ -8,8 +8,8 @@
         <script src="/controller/listController.js"></script>
     </head>
     
-    <body ng-app="myTodo" ng-controller="todoCtrl">
-        <h2>My Todo List</h2>
+    <body ng-app="myTodo" ng-controller="todoCtrl" ng-init="title='My Todo List'">
+        <h2>{{ title }}</h2>
 
         <form ng-submit="todoAdd()">
             <span ng-show="!todoInput.length">Please enter your todo task!</span>
@@ -22,7 +22,7 @@
         <br>
 
         <div ng-repeat="x in todoList">
-            <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+            <input type="checkbox" ng-model="x.done"> {{ x.todoText }}
         </div>
 
         <p><button ng-click="remove()">Remove marked</button></p>
