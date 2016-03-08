@@ -6,6 +6,12 @@
 
         <script src="//code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
         <script src="/controller/listController.js"></script>
+        <style>
+            .done-true {
+                text-decoration: line-through;
+                color: grey;
+                }
+        </style>
     </head>
     
     <body ng-app="myTodo" ng-controller="todoCtrl" ng-init="title='My Todo List'">
@@ -22,8 +28,9 @@
 
         <br>
 
-        <div ng-repeat="x in todoList">
-            <input type="checkbox" ng-model="x.done"> {{ x.todoText }}
+        <div ng-repeat="todo in todoList">
+            <input type="checkbox" ng-model="todo.done"> 
+            <span class="done-{{todo.done}}">{{todo.todoText}}</span>
         </div>
 
         <p><button ng-click="remove()">Remove marked</button></p>
