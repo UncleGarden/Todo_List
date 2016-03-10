@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Angular Todo List</title>
+        <meta charset="UTF-8">
+
+        <script src="//code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
+        <script src="//code.angularjs.org/1.5.0-rc.2/angular-route.min.js"></script>
+        <script src="controller/listController.js"></script>
+        <!-- <script src="controller/app.js"></script> -->
+        
+        <style>
+            .done-true {
+                text-decoration: line-through;
+                color: grey;
+                }
+        </style>
+    </head>
+    
+    <body ng-app="myTodo" ng-controller="todoCtrl" ng-init="title='My Todo List'">
+        <h2>{{ title }}</h2>
+        <current-date></current-date>
+        
+        <form ng-submit="add()">
+            <span ng-show="!todoInput.length">Please enter your todo task!</span>
+            <br>
+            <input type="text" ng-model="todoInput" size="50" placeholder="Add New" required>
+            <br>
+            <input type="submit" value="Add New">
+        </form>
+
+        <br>
+
+        <div ng-if="all" ng-repeat="todo in allList">
+            <input type="checkbox" ng-model="todo.done"> 
+            <span class="done-{{todo.done}}">{{todo.todoText}}</span>
+        </div>
+        
+        <div ng-if="active" ng-repeat="todo in activeList">
+            <input type="checkbox" ng-model="todo.done"> 
+            <span class="done-{{todo.done}}">{{todo.todoText}}</span>
+        </div>
+        
+        <div ng-if="complete" ng-repeat="todo in completeList">
+            <input type="checkbox" ng-model="todo.done"> 
+            <span class="done-{{todo.done}}">{{todo.todoText}}</span>
+        </div>
+
+        <p><button ng-click="remove()">Remove marked</button></p>
+        
+        <a ng-click="get_all()" href="#/all">All</a>
+        <a ng-click="get_active()" href="#/active">Active</a>
+        <a ng-click="get_complete()" href="#/complete">Complete</a>
+        
+        <div class="container">
+            <div ng-view></div>
+        </div>
+    </body>
+</html>
