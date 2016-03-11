@@ -30,23 +30,59 @@
         </form>
 
         <br>
+        
+        
+        
+        <script type="text/ng-template" id="item.html">
+            <input type="checkbox" ng-model="todo.done"  ng-click="remove(todo)"> 
+            <span class="done-{{todo.done}}">{{todo.todoText}}</span>
+        </script>
+        
+        
+        <div ng-repeat="todo in notes" ng-if="currentStatus === 'active'">
+            <div ng-include="item.html" ></div>
+        </div>
+        
+        <div ng-repeat="todo in notes" ng-if="currentStatus === 'all'">
+            <div ng-include="item.html" ></div>
+        </div>
+        
+        <div ng-repeat="todo in notes" ng-if="currentStatus === 'complete'">
+            <div ng-include="item.html" ></div>
+        </div>
+        
+        
+<!--
+        <div ng-repeat="todo in notes"> {{currentStatus}}-{{todo.status}}
+            <div ng-switch="currentStatus">
+                <div ng-switch-when="todo.status" >
+                    <div ng-include="item.html" ></div> 
+                </div>
+                <div ng-switch-default >
+                    <div ng-include="item.html" ></div>
+                </div>
+            </div>
+        </div>
+-->
 
-        <div ng-if="all" ng-repeat="todo in allList">
+<!--
+        <div ng-if="currentStatus === 'all'" ng-repeat="todo in allList">
             <input type="checkbox" ng-model="todo.done"> 
             <span class="done-{{todo.done}}">{{todo.todoText}}</span>
         </div>
         
-        <div ng-if="active" ng-repeat="todo in activeList">
+        <div ng-if="currentStatus === 'active'" ng-repeat="todo in activeList">
             <input type="checkbox" ng-model="todo.done"> 
             <span class="done-{{todo.done}}">{{todo.todoText}}</span>
         </div>
         
-        <div ng-if="complete" ng-repeat="todo in completeList">
-            <input type="checkbox" ng-model="todo.done"> 
+        <div ng-if="currentStatus === 'complete'" ng-repeat="todo in completeList">
+            <input type="checkbox" ng-model="todo.done" ng-click="remove()"> 
             <span class="done-{{todo.done}}">{{todo.todoText}}</span>
         </div>
+-->
 
-        <p><button ng-click="remove()">Remove marked</button></p>
+<!--        <p><button ng-click="remove()">Remove marked</button></p>-->
         
         <a ng-click="get_all()" href="#/all">All</a>
         <a ng-click="get_active()" href="#/active">Active</a>
