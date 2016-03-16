@@ -28,62 +28,39 @@
             <br>
             <input type="submit" value="Add New">
         </form>
+        
+        <script type="text/ng-template" id="lala.html">
+            <h3>Test for ne-include tag</h3>
+        </script>
 
-        <br>
-        
-        
-        
-        <script type="text/ng-template" id="item.html">
+        <script type="text/ng-template" id="test.html">
             <input type="checkbox" ng-model="todo.done"  ng-click="remove(todo)"> 
             <span class="done-{{todo.done}}">{{todo.todoText}}</span>
         </script>
+
+        <br>
+        <!-- Test for outside source -->
+        <!-- <ng-include src="'/templates.html'" ></ng-include> -->
+        <ng-include src="'lala.html'" ></ng-include>
+        <hr />                
         
         
-        <div ng-repeat="todo in notes" ng-if="currentStatus === 'active'">
-            <div ng-include="item.html" ></div>
-        </div>
-        
+        <h2>TEST for ng-include and ng-template</h2>        
         <div ng-repeat="todo in notes" ng-if="currentStatus === 'all'">
-            <div ng-include="item.html" ></div>
+            <div ng-include="'test.html'" ></div>
+            <!-- <input type="checkbox" ng-model="todo.done"  ng-click="remove(todo)"> 
+            <span class="done-{{todo.done}}">{{todo.todoText}}</span> -->
         </div>
         
-        <div ng-repeat="todo in notes" ng-if="currentStatus === 'complete'">
-            <div ng-include="item.html" ></div>
+        <div ng-repeat="todo in notes | filter: {status: 'active'}" ng-if="currentStatus === 'active'">
+            <div ng-include="'test.html'" ></div>
         </div>
         
-        
-<!--
-        <div ng-repeat="todo in notes"> {{currentStatus}}-{{todo.status}}
-            <div ng-switch="currentStatus">
-                <div ng-switch-when="todo.status" >
-                    <div ng-include="item.html" ></div> 
-                </div>
-                <div ng-switch-default >
-                    <div ng-include="item.html" ></div>
-                </div>
-            </div>
+        <div ng-repeat="todo in notes | filter: {status:'complete'}" ng-if="currentStatus === 'complete'">
+            <div ng-include src="'test.html'" ></div>
         </div>
--->
 
-<!--
-        <div ng-if="currentStatus === 'all'" ng-repeat="todo in allList">
-            <input type="checkbox" ng-model="todo.done"> 
-            <span class="done-{{todo.done}}">{{todo.todoText}}</span>
-        </div>
-        
-        <div ng-if="currentStatus === 'active'" ng-repeat="todo in activeList">
-            <input type="checkbox" ng-model="todo.done"> 
-            <span class="done-{{todo.done}}">{{todo.todoText}}</span>
-        </div>
-        
-        <div ng-if="currentStatus === 'complete'" ng-repeat="todo in completeList">
-            <input type="checkbox" ng-model="todo.done" ng-click="remove()"> 
-            <span class="done-{{todo.done}}">{{todo.todoText}}</span>
-        </div>
--->
-
-<!--        <p><button ng-click="remove()">Remove marked</button></p>-->
-        
+        <!-- Three link for different status -->
         <a ng-click="get_all()" href="#/all">All</a>
         <a ng-click="get_active()" href="#/active">Active</a>
         <a ng-click="get_complete()" href="#/complete">Complete</a>
