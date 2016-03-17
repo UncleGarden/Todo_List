@@ -4,6 +4,7 @@ var app = angular.module('myTodo', []);
 
 app.controller('todoCtrl', function ($scope) {
     "use strict";
+    $scope.format = 'M/d/yy h:mm:ss a';
     
     var item = {todoText: '', done: false, status: 'active'};
     $scope.notes = [];
@@ -56,9 +57,28 @@ app.controller('todoCtrl', function ($scope) {
     };
 });
 
-app.directive("currentDate", function () {
+app.directive("currentTime", function (dateFilter) {
     "use strict";
-    return {
-        template: "Current Date: {{ date | date : 'yyyy-MM-dd HH:mm:ss' }}"
+    return function (scope, element, attrs) {
+        var format;
+        
+        function updateTime() {
+            var dateTime = dateFilter(new Date(), format);
+            element.text(dateTime);
+        }
+        
+        function updateLater() {
+            setTimeout(function () {
+                updateTime();
+                updateLater();
+            }, 1000);
+        }
+        
+        scope.$watch(attrs.currentTime, function (value) {
+            format = value;
+            updateTime();
+        });
+        
+        updateLater();
     };
 });

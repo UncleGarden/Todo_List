@@ -21,7 +21,7 @@
     
     <body ng-app="myTodo" ng-controller="todoCtrl" ng-init="title='My Todo List'">
         <h2>{{ title }}</h2>
-        <current-date></current-date>
+        Current time is: <span current-time="format"></span>
         
         <form ng-submit="add()">
             <span ng-show="!todoInput.length">Please enter your todo task!</span>
@@ -32,7 +32,7 @@
         </form>
         
         <script type="text/ng-template" id="lala.html">
-            <h3>Test for ne-include tag</h3>
+            <h3>Test for ng-include tag</h3>
         </script>
 
         <script type="text/ng-template" id="test.html">
