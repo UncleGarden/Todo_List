@@ -50,14 +50,18 @@
             <!-- <ng-include src="'/templates.html'" ></ng-include> -->
             <ng-include src="'lala.html'" ></ng-include>
 
+
             <!-- TODO LIST -->
+<!--
             <div id="todo-list" class="row">
                 <div class="col-sm-4 col-sm-offset-4">
+-->
                     <!-- <h2>TEST for ng-include and ng-template</h2> -->       
+<!--
                     <div ng-repeat="todo in notes" ng-if="currentStatus === 'all'">
                         <div ng-include="'test.html'" ></div>
-                        <!-- <input type="checkbox" ng-model="todo.done"  ng-click="remove(todo)"> 
-                        <span class="done-{{todo.done}}">{{todo.todoText}}</span> -->
+                        <input type="checkbox" ng-model="todo.done"  ng-click="remove(todo)"> 
+                        <span class="done-{{todo.done}}">{{todo.todoText}}</span>
                     </div>
 
                     <div ng-repeat="todo in notes | filter: {status: 'active'}" ng-if="currentStatus === 'active'">
@@ -67,23 +71,86 @@
                     <div ng-repeat="todo in notes | filter: {status:'complete'}" ng-if="currentStatus === 'complete'">
                         <div ng-include src="'test.html'" ></div>
                     </div>
+-->
 
                     <!-- Three link for different status -->
-            <!--
+<!--
                     <a ng-click="get_all()" href="#/all">All</a>
                     <a ng-click="get_active()" href="#/active">Active</a>
                     <a ng-click="get_complete()" href="#/complete">Complete</a>
-            -->
+
 
                     <div class="btn-group">
                         <label class="btn btn-primary" ng-model="radioModel" ng-click="get_all()" uib-btn-radio="'Left'">All</label>
                         <label class="btn btn-primary" ng-model="radioModel" ng-click="get_active()" uib-btn-radio="'Middle'">Active</label>
                         <label class="btn btn-primary" ng-model="radioModel"  ng-click="get_complete()" uib-btn-radio="'Right'">Complete</label>
                     </div>
+                    
+                </div>
+            </div>            
+-->
+            
+            
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="bs-component">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-click="get_all()">
+                            <a class="badge" >14</a>
+                            All
+                            </li>
+                            <li class="list-group-item" ng-click="get_active()">
+                                <a class="badge">2</a>
+                                Active
+                            </li>
+                            <li class="list-group-item" ng-click="get_complete()">
+                                <a class="badge">1</a>
+                                Complete
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="bs-component">
+                        <div class="list-group">
+                            <div ng-repeat="todo in notes" ng-if="currentStatus === 'all'">
+                                <div ng-include="'test.html'" ></div>
+                        <!-- <input type="checkbox" ng-model="todo.done"  ng-click="remove(todo)"> 
+                        <span class="done-{{todo.done}}">{{todo.todoText}}</span> -->
+                            </div>
+
+                            <div ng-repeat="todo in notes | filter: {status: 'active'}" ng-if="currentStatus === 'active'">
+                                <div ng-include="'test.html'" ></div>
+                            </div>
+
+                            <div ng-repeat="todo in notes | filter: {status:'complete'}" ng-if="currentStatus === 'complete'">
+                                <div ng-include src="'test.html'" ></div>
+                            </div>
+                        </div>
+                    <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div></div>
+              </div>
+                
+                <!-- Search function-->
+                <div class="col-lg-4">
+                    <div class="bs-component">
+                        <div class="list-group">
+<!--
+                    <a href="#" class="list-group-item">
+                      <h4 class="list-group-item-heading">List group item heading</h4>
+                      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <h4 class="list-group-item-heading">List group item heading</h4>
+                      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    </a>
+-->
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <hr />           
+            
+            <hr />  
             
             <div class="container">
                 <div ng-view></div>
